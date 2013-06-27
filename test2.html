@@ -1,0 +1,84 @@
+    <!doctype html>
+	<html>
+     <head>
+     <button type="button" id="b1" onclick="init();" >Switch Medium</button>  
+        <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+        <script type="text/javascript">
+        google.load("visualization", "1", {packages:["corechart"]});
+        google.setOnLoadCallback(init);
+        function init(){
+              var rowData1 = [['Year', 'Action', 'Comedy','Drama', 'Musical',
+                         'Crime', 'Science Fiction'],
+                        ['1900s', 0, 0, 0, 0, 0, 0],
+                        ['1910s', 0, 0, 0, 0, 0, 0],
+                        ['1920s', 0, 0, 0, 0, 0, 0],
+                        ['1930s', 0, 1, 0, 0, 0, 0],
+						['1940s', 0, 0, 0, 0, 0, 0],
+						['1950s', 0, 0, 0, 0, 0, 0],
+						['1960s', 0, 1, 1, 0, 0, 0],
+						['1970s', 0, 0, 2, 0, 2, 0],
+						['1980s', 3, 2, 1, 0, 0, 0],
+						['1990s', 1, 7, 5, 0, 3, 0],
+						['2000s', 3, 3, 5, 1, 1, 0],
+						['2010s', 2, 1, 2, 1, 1, 0]];
+            var rowData2 = [['Year', 'Action', 'Comedy', 'Drama', 'Musical',
+                         'Crime', 'Science Fiction'],
+                        ['1900s', 165, 938, 522, 998, 450, 385],
+                        ['1910s', 135, 1120, 599, 1268, 288, 385],
+                        ['1920s', 157, 1167, 587, 807, 397, 385],
+                        ['1930s', 139, 1110, 615, 968, 215, 385],
+						['1940s', 139, 1110, 615, 968, 215, 385],
+						['1950s', 139, 1110, 615, 968, 215, 385],
+						['1960s', 139, 1110, 615, 968, 215, 385],
+						['1970s', 139, 1110, 615, 968, 215, 385],
+						['1980s', 139, 1110, 615, 968, 215, 385],
+						['1990s', 139, 1110, 615, 968, 215, 385],
+						['2000s', 139, 1110, 615, 968, 215, 385],
+						['2010s', 139, 1110, 615, 968, 215, 385]];
+
+            // Create and populate the data tables.
+            var data = [];
+            data[0] = google.visualization.arrayToDataTable(rowData1);
+            data[1] = google.visualization.arrayToDataTable(rowData2);
+
+            var options = {
+              width: 1100,
+              height: 600,
+              vAxis: {title: "Number"},
+              hAxis: {title: "Year"},
+			  seriesType: "bars",
+              //series: {5: {type: "line"}},
+              animation:{
+                duration: 1000,
+                easing: 'out'
+              },
+            };
+            var current = 0;
+            // Create and draw the visualization.
+            var chart = new google.visualization.ComboChart(document.getElementById('chart_div'));
+            var button = document.getElementById('b1');
+            function drawChart() {
+              // Disabling the button while the chart is drawing.
+              button.disabled = true;
+              google.visualization.events.addListener(chart, 'ready',
+                  function() {
+                    button.disabled = false;
+                    button.value = 'Switch to ' + (current ? 'Movie' : 'Television');
+                  });
+              options['title'] = 'Representations of Detroit across ' + (current ? 'Television' : 'Movie') + ' Genres by Decade	';
+
+              chart.draw(data[current], options);
+            }
+            drawChart();
+
+            button.onclick = function() {
+              current = 1 - current;
+              drawChart();
+            }
+        }
+        </script>
+      </head>
+      <body>
+        <div id="chart_div" style="width: 1800px; height: 1000px;"></div>
+      </body>
+    </html>
