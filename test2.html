@@ -33,12 +33,12 @@
 						['1990s', 0, 7, 0, 0, 0, 2],
 						['2000s', 1, 4, 1, 0, 1, 1],
 						['2010s', 1, 2, 0, 0, 3, 1]];
-
+			
             // Create and populate the data tables.
             var data = [];
             data[0] = google.visualization.arrayToDataTable(rowData1);
             data[1] = google.visualization.arrayToDataTable(rowData2);
-
+			
             var options = {
               width: 1100,
               height: 600,
@@ -70,13 +70,12 @@
                     button.disabled = false;
                     button.value = 'Switch genre to ' + (current ? 'Movies' : 'Television');
                   });
-              options['title'] = (current ? 'T  E L E V I S I O N' : 'M O V I E S');
+              options['title'] = (current ? 'Television' : 'Movies') + ' Set in Detroit by Genre';
 
               chart.draw(data[current], options);
             }
             drawChart();
-
-            button.onclick = function() {
+			button.onclick = function() {
               current = 1 - current;
               drawChart();
             }
