@@ -1,7 +1,7 @@
     <!doctype html>
 	<html>
      <head>
-     <button type="button" id="b1" onclick="init();" >Switch Medium</button>  
+	 <title>Detroit in Popular Culture</title>
         <script type="text/javascript" src="https://www.google.com/jsapi"></script>
         <script type="text/javascript">
         google.load("visualization", "1", {packages:["corechart"]});
@@ -9,7 +9,6 @@
         function init(){
               var rowData1 = [['Year', 'Action', 'Comedy','Drama', 'Musical',
                          'Crime', 'Science Fiction'],
-                        ['1900s', 0, 0, 0, 0, 0, 0],
                         ['1910s', 0, 0, 0, 0, 0, 0],
                         ['1920s', 0, 0, 0, 0, 0, 0],
                         ['1930s', 0, 1, 0, 0, 0, 0],
@@ -17,24 +16,23 @@
 						['1950s', 0, 0, 0, 0, 0, 0],
 						['1960s', 0, 1, 1, 0, 0, 0],
 						['1970s', 0, 0, 2, 0, 2, 0],
-						['1980s', 3, 2, 1, 0, 0, 0],
-						['1990s', 1, 7, 5, 0, 3, 0],
+						['1980s', 3, 2, 1, 0, 0, 1],
+						['1990s', 1, 7, 5, 0, 3, 2],
 						['2000s', 3, 3, 5, 1, 1, 0],
 						['2010s', 2, 1, 2, 1, 1, 0]];
             var rowData2 = [['Year', 'Action', 'Comedy', 'Drama', 'Musical',
                          'Crime', 'Science Fiction'],
-                        ['1900s', 165, 938, 522, 998, 450, 385],
-                        ['1910s', 135, 1120, 599, 1268, 288, 385],
-                        ['1920s', 157, 1167, 587, 807, 397, 385],
-                        ['1930s', 139, 1110, 615, 968, 215, 385],
-						['1940s', 139, 1110, 615, 968, 215, 385],
-						['1950s', 139, 1110, 615, 968, 215, 385],
-						['1960s', 139, 1110, 615, 968, 215, 385],
-						['1970s', 139, 1110, 615, 968, 215, 385],
-						['1980s', 139, 1110, 615, 968, 215, 385],
-						['1990s', 139, 1110, 615, 968, 215, 385],
-						['2000s', 139, 1110, 615, 968, 215, 385],
-						['2010s', 139, 1110, 615, 968, 215, 385]];
+                        ['1910s', 0, 0, 0, 0, 0, 0],
+                        ['1920s', 0, 0, 0, 0, 0, 0],
+                        ['1930s', 0, 0, 0, 0, 0, 0],
+						['1940s', 0, 0, 0, 0, 0, 0],
+						['1950s', 0, 0, 0, 0, 0, 0],
+						['1960s', 0, 0, 0, 0, 0, 0],
+						['1970s', 0, 0, 0, 0, 0, 0],
+						['1980s', 0, 0, 3, 0, 0, 0],
+						['1990s', 0, 7, 0, 0, 0, 2],
+						['2000s', 1, 4, 1, 0, 1, 1],
+						['2010s', 1, 2, 0, 0, 3, 1]];
 
             // Create and populate the data tables.
             var data = [];
@@ -44,8 +42,15 @@
             var options = {
               width: 1100,
               height: 600,
-              vAxis: {title: "Number"},
-              hAxis: {title: "Year"},
+			  fontName: "calibri",
+			  colors: ['#f0e116', '#F49AC2', '#7BCDC8', '#3BB878', '#ACD372', '#FBAF5C'],
+			  legend: {position: 'bottom', textStyle: {color: 'black', fontSize: 16}},
+			  bar: { groupWidth: '90%'},
+			  //vAxis: {title: "Number", titleTextStyle: {fontSize: 20}},
+              //hAxis: {title: "Year", titleTextStyle: {fontSize: 20}},
+			  titlePosition: "in",
+			  chartArea:{width:"75%", height:"75%"},
+			  //titleTextStyle: {color: 'black',fontSize: 40}
 			  seriesType: "bars",
               //series: {5: {type: "line"}},
               animation:{
@@ -63,9 +68,9 @@
               google.visualization.events.addListener(chart, 'ready',
                   function() {
                     button.disabled = false;
-                    button.value = 'Switch to ' + (current ? 'Movie' : 'Television');
+                    button.value = 'Switch genre to ' + (current ? 'Movies' : 'Television');
                   });
-              options['title'] = 'Representations of Detroit across ' + (current ? 'Television' : 'Movie') + ' Genres by Decade	';
+              options['title'] = (current ? 'T  E L E V I S I O N' : 'M O V I E S');
 
               chart.draw(data[current], options);
             }
@@ -79,6 +84,9 @@
         </script>
       </head>
       <body>
-        <div id="chart_div" style="width: 1800px; height: 1000px;"></div>
+		<input type="button" style="font-family: calibri; height: 30px" type="button" id="b1" onclick="init();" >
+		<div id="chart_div" style="width: 5000px; height: 100;px"></div>
+
+		
       </body>
     </html>
